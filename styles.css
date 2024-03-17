@@ -1,0 +1,274 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: roboto, arial, sans-serif;
+}
+
+body {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#Wrapper {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(120, 1fr);
+  grid-template-rows: auto 1fr;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+#Wrapper.Loading::before {
+  display: flex;
+  content: '';
+  grid-column: 1 / span 120;
+  grid-row: 1 / span 2;
+  z-index: 4;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+}
+#Wrapper.Loading::after {
+  display: flex;
+  content: "Hani ♥ Musa";
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+  height: 6rem;
+  background: #FFFFFF;
+  border-radius: 100%;
+  border-top: 1px solid #FFFFFF;
+  border-right: 1px solid #FFFFFF;
+  border-bottom: 1px solid #FFFFFF;
+  border-left: 1px solid #FFFFFF;
+  text-align: center;
+  font-size: 0.75rem;
+  animation: Loading 1s linear infinite normal;
+}
+@keyframes Loading {
+  0% {
+    border-top: 1px solid #FFFFFF;
+    border-right: 1px solid #999999;
+    border-bottom: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+  }
+  25% {
+    border-top: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    border-bottom: 1px solid #999999;
+    border-left: 1px solid #FFFFFF;
+  }
+  50% {
+    border-top: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+    border-left: 1px solid #999999;
+  }
+  75% {
+    border-top: 1px solid #999999;
+    border-right: 1px solid #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+  }
+}
+
+#Info {
+  display: flex;
+  grid-column: 1 / span 120;
+  grid-row: 1;
+  z-index: 3;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+#InfoTitle {
+  display: flex;
+  padding-top: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: auto;
+}
+#InfoTitleImg {
+  overflow: hidden;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 0.1rem solid #C0C0C0;
+  border-radius: 100%;
+  background: #FFFFFF;
+}
+#InfoTitleImg img {
+  width: 100%;
+  height: 100%;
+}
+#InfoTitleText {
+  flex-grow: 1;
+  font-weight: normal;
+  color: #FFFFFF;
+}
+#InfoControl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
+  overflow: hidden;
+}
+#InfoControl button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: none;
+  border: 0px;
+  border-radius: 100%;
+  outline: none;
+  background: #F0F0F0;
+}
+#InfoControl button[data-mode="play"]::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: url('./icons/play.svg');
+}
+#InfoControl button[data-mode="pause"]::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: url('./icons/pause.svg');
+}
+#Infobar {
+  display: flex;
+  padding-top: 0.5rem;
+  padding-right: 30%;
+  padding-bottom: 0.5rem;
+  padding-left: 30%;
+  flex-direction: row;
+  flex-grow: 1;
+  gap: 0.25rem;
+  width: 100%;
+  height: auto;
+}
+#Infobar .Itembar {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+  width: auto;
+  height: 0.25rem;
+  background: #666666;
+  border-radius: 0.5rem;
+}
+#Infobar .Itembar.Active {
+  background: #666666;
+}
+#Infobar .Itembar.Active::before {
+  content: '';
+  background: #909090;
+  width: 0;
+  height: 100%;
+  animation: ItembarActiveTiming 20s linear infinite normal;
+}
+#Infobar .Itembar.Pause::before {
+  animation-play-state: paused;
+}
+@keyframes ItembarActiveTiming {
+  0% {
+      width: 0%;
+  }
+  100% {
+      width: 100%;
+  }
+}
+#Infobar .Itembar.Pass {
+  background: #909090;
+}
+
+#Container {
+  grid-column: 1 / span 120;
+  grid-row: 1 / span 2;
+  z-index: 1;
+  background: #333333;
+}
+
+#Slide {
+  display: grid;
+  grid-template-columns: repeat(120, 1fr);
+  grid-template-rows: 1fr;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+#SlideControl {
+  display: flex;
+  grid-column: 1 / span 120;
+  grid-row: 1;
+  z-index: 2;
+  flex-direction: row;
+}
+#SlideControl button {
+  width: 50%;
+  height: 100%;
+  background: none;
+  border: 0px;
+  outline: none;
+}
+#SlideItems {
+  grid-column: 1 / span 120;
+  grid-row: 1;
+  z-index: 1;
+  overflow: hidden;
+}
+#SlideItems .SlideItem {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#SlideItems .SlideItem.Active {
+  display: flex;
+}
+#SlideItems .SlideItem img {
+  display: inherit;
+  width: auto;
+  height: 100%;
+}
+
+@media only screen and (min-width: 992px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #393939;
+  }
+  #Wrapper {
+    width: 420px;
+    border-right: 0.1rem solid #303030;
+    border-left: 0.1rem solid #303030;
+  }
+}
