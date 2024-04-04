@@ -256,4 +256,14 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('InfoControl'),
     document.getElementById('Infobar')
   );
+
+  const hammertime = new Hammer(document.getElementById('Wrapper'));
+
+  hammertime.on('swipe', function (ev) {
+      if (ev.direction === Hammer.DIRECTION_LEFT) {
+        nextSlide()
+      } else if (ev.direction === Hammer.DIRECTION_RIGHT) {
+        previousSlide()
+      }
+  });
 });
